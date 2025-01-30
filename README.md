@@ -75,6 +75,7 @@ python test.py
 ```bash
 python app.py
 
+---
 ## 📊 **Model Performance Comparison**
 
 | Model              | Precision@5 | Retrieval Accuracy | Weighted Precision@5 | Mean Reciprocal Rank |
