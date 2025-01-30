@@ -47,34 +47,35 @@ The dataset was divided in a **stratified manner** to maintain class balance:
 ---
 
 ## 🛠 Setup & Installation
-```md
+
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/your-username/fashion-image-retrieval.git
-cd fashion-image-retrieval
+cd fashion-image-retrieval ```
 
 ### 2️⃣ Install Dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt ```
 
 ### 3️⃣ Prepare the Data
 ```bash
-python data_preparation.py
+python data_preparation.py ```
 
 ### 4️⃣ Train the Model & Build FAISS Index
 ```bash
-python train.py
+python train.py ```
 
 ### 5️⃣ Evaluate the Model
 ```bash
-python test.py
+python test.py ```
 
 ### 6️⃣ Run the Interactive Gradio UI
 ```bash
-python app.py
+python app.py ```
 
 
 ---
+
 ## 📊 **Model Performance Comparison**
 
 | Model              | Precision@5 | Retrieval Accuracy | Weighted Precision@5 | Mean Reciprocal Rank |
