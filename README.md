@@ -22,29 +22,58 @@ The dataset was divided in a **stratified manner** to maintain class balance:
 
 ---
 
-## 🚀 **Project Workflow**
+# 🚀 Project Workflow
 
-### 1️⃣ **Data Preprocessing**
-- Filter top **10 classes** from the original **45 classes**.
-- Load images and labels, then split data into **train, validation, and test** sets.
+### 1️⃣ Data Preprocessing (`data_preparation.py`)
+- Load images and labels from **Hugging Face Dataset**.
+- **Filter top 10 classes** from the original **45 classes**.
+- **Split data into Train, Validation, and Test sets**.
+- Save images and **encode labels** for training.
 
-### 2️⃣ **Feature Extraction**
-- Used **pre-trained deep learning models** to extract embeddings.
-- Models Evaluated: **ResNet-18, EfficientNet-B0, MobileNetV3, SqueezeNet, ShuffleNet-V2, ConvNeXt-Tiny**.
+### 2️⃣ Feature Extraction & Indexing (`train.py`)
+- Extract embeddings using **pre-trained deep learning models**.
+- **Models Evaluated:** **ResNet-18, EfficientNet-B0, MobileNetV3, SqueezeNet, ShuffleNet-V2, ConvNeXt-Tiny**.
+- Store image embeddings in a **FAISS index** for fast retrieval.
 
-### 3️⃣ **Similarity Search with FAISS**
-- Built a **FAISS index** to store and retrieve image embeddings.
-- Indexed training images and used FAISS to find the **5 most similar images** for any query.
+### 3️⃣ Similarity Search & Evaluation (`test.py`)
+- Load the **FAISS index** and validation data.
+- Search for **top 5 most similar images**.
+- Evaluate retrieval using **Precision@5, Retrieval Accuracy, Weighted Precision, and Mean Reciprocal Rank (MRR)**.
 
-### 4️⃣ **Model Evaluation**
-- Computed **Precision@5, Retrieval Accuracy, Weighted Precision, and Mean Reciprocal Rank (MRR)**.
-- Compared different models to select the best balance of **accuracy and speed**.
-
-### 5️⃣ **UI Deployment on Hugging Face Spaces**
-- Built an **interactive demo using Gradio**.
-- Allows users to **upload an image and retrieve 5 similar images** from the dataset.
+### 4️⃣ UI Deployment on Hugging Face Spaces
+- Built an **interactive Gradio UI**.
+- Users can **upload an image** to retrieve **5 most similar images** from the dataset.
 
 ---
+
+
+## 🛠 Setup & Installation
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-username/fashion-image-retrieval.git
+cd fashion-image-retrieval
+
+
+### 2️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+
+### 3️⃣ Prepare the Data
+```bash
+python data_preparation.py
+
+### 4️⃣ Train the Model & Build FAISS Index
+```bash
+python train.py
+
+### 5️⃣ Evaluate the Model
+```bash
+python test.py
+
+### 6️⃣ Run the Interactive Gradio UI
+```bash
+python app.py
 
 ## 📊 **Model Performance Comparison**
 
@@ -76,30 +105,77 @@ To better understand how the model performs on individual classes, we computed *
 | **8**      | 0.9876   | 0.9873     | 0.9889         | 0.9891       | 0.9881       | 0.9883        |
 | **9**      | 0.9780   | 0.9780     | 0.9843         | 0.9859       | 0.9796       | 0.9843        |
 
-### **Observations from Per-Class Precision**
-- Class **2** achieved the **highest precision (1.0000)**, meaning all top-5 retrieved images were correct.
-- Class **6** had the lowest precision (0.7111), indicating that retrieval accuracy for this class can be improved.
-- Most classes have high precision, showing that the model retrieves relevant images effectively.
+---
+## 🤝 Contributing
+Feel free to **open an issue or submit a PR** if you’d like to contribute. 🚀
 
 ---
 
-## 🏆 **Final Model Selection for UI Deployment**
-Based on **accuracy, latency, and model size**, the best models for deployment are:
+## 💡 Acknowledgments
+This project is built upon numerous **open-source models and libraries**. We acknowledge the following research papers and frameworks that contributed to the development of this work:
 
-1️⃣ **Swin Transformer** 🏆 (Highest retrieval accuracy & MRR)  
-2️⃣ **EfficientNet-B0** 🚀 (Best balance of speed & accuracy)  
-3️⃣ **ConvNeXt-Tiny** ⚡ (Modern CNN, competitive performance)  
-4️⃣ **DINOv2 (ViT-Small)** 🎯 (Best self-supervised model)  
-5️⃣ **MobileNetV3** ⚡⚡ (Fastest model, best for real-time inference)  
+### 📚 **Dataset**
+- **Fashion Product Images Small**: Hugging Face dataset [`ashraq/fashion-product-images-small`](https://huggingface.co/datasets/ashraq/fashion-product-images-small)
 
-These models are integrated into an **interactive UI using Gradio** and deployed on **Hugging Face Spaces**.
+### 🔍 **FAISS - Fast Similarity Search**
+- Johnson, J., Douze, M., & Jégou, H. (2019).  
+  **"Billion-scale similarity search with GPUs"**.  
+  *IEEE Transactions on Big Data*.  
+  📄 [FAISS Paper](https://arxiv.org/abs/1702.08734)
 
----
+### 🏗 **Pretrained Models Used**
+We utilized several **deep learning models** for feature extraction. Below are the original research papers for each model:
 
-## 🛠 **How to Use the Model?**
+- **ResNet-18**:  
+  He, K., Zhang, X., Ren, S., & Sun, J. (2016).  
+  **"Deep Residual Learning for Image Recognition"**.  
+  *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)*.  
+  📄 [Paper](https://arxiv.org/abs/1512.03385)
 
-### **1️⃣ Train the Model & Extract Features**
-Run the following command to train and extract image embeddings:
+- **EfficientNet-B0**:  
+  Tan, M., & Le, Q. V. (2019).  
+  **"EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"**.  
+  *Proceedings of the International Conference on Machine Learning (ICML)*.  
+  📄 [Paper](https://arxiv.org/abs/1905.11946)
 
-```bash
-python train.py --model resnet18
+- **MobileNetV3**:  
+  Howard, A., Sandler, M., Chu, G., et al. (2019).  
+  **"Searching for MobileNetV3"**.  
+  *Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)*.  
+  📄 [Paper](https://arxiv.org/abs/1905.02244)
+
+- **SqueezeNet**:  
+  Iandola, F., Han, S., Moskewicz, M., et al. (2016).  
+  **"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size"**.  
+  *arXiv preprint*.  
+  📄 [Paper](https://arxiv.org/abs/1602.07360)
+
+- **ShuffleNet-V2**:  
+  Ma, N., Zhang, X., Zheng, H., & Sun, J. (2018).  
+  **"ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design"**.  
+  *Proceedings of the European Conference on Computer Vision (ECCV)*.  
+  📄 [Paper](https://arxiv.org/abs/1807.11164)
+
+- **ConvNeXt-Tiny**:  
+  Liu, Z., Mao, H., Wu, C., et al. (2022).  
+  **"A ConvNet for the 2020s"**.  
+  *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)*.  
+  📄 [Paper](https://arxiv.org/abs/2201.03545)
+
+### 💡 **Deep Learning Frameworks**
+This project relies on the following **deep learning and machine learning libraries**:
+- **PyTorch**: [Website](https://pytorch.org/)  
+- **Torchvision**: [GitHub](https://github.com/pytorch/vision)  
+- **FAISS**: [GitHub](https://github.com/facebookresearch/faiss)  
+- **Scikit-learn**: [Website](https://scikit-learn.org/)  
+- **Hugging Face Datasets**: [Website](https://huggingface.co/datasets)  
+
+
+
+
+
+
+
+
+
+
