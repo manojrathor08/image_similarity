@@ -3,6 +3,35 @@
 This project implements a **content-based image retrieval (CBIR) system** using deep learning models to find visually similar images. The system extracts feature embeddings from pre-trained models and performs **FAISS-based similarity search**.
 
 ---
+## 🔍 Similarity Search Results
+
+Here are **5 example similarity search results** from our FAISS-based image retrieval system:
+
+### 🖼 Query 1
+![Query 1](https://github.com/manojrathor08/image_similarity/blob/main/similarity_results/query_0.png)
+
+---
+
+### 🖼 Query 2
+![Query 2](https://github.com/manojrathor08/image_similarity/blob/main/similarity_results/query_2.png)
+
+---
+
+### 🖼 Query 3
+![Query 3](https://github.com/manojrathor08/image_similarity/blob/main/similarity_results/query_3.png)
+
+---
+
+### 🖼 Query 4
+![Query 4](https://github.com/manojrathor08/image_similarity/blob/main/similarity_results/query_4.png)
+
+---
+
+### 🖼 Query 5
+![Query 5](https://github.com/manojrathor08/image_similarity/blob/main/similarity_results/query_5.png)
+
+---
+
 
 ## 📂 Dataset Information
 
