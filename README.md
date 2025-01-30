@@ -14,7 +14,7 @@ We use the **Fashion Product Images Small** dataset from Hugging Face 🤗:
 - **Selected Classes:** **Top 10 most frequent classes**
 - **Data Split:** Stratified split into **Training, Validation, and Test sets**.
 
-### **📊 Data Splitting Strategy**
+## **📊 Data Splitting Strategy**
 The dataset was divided in a **stratified manner** to maintain class balance:
 - **Train Set:** **70%** of the selected data
 - **Validation Set:** **15%** (used for evaluation)
@@ -22,7 +22,7 @@ The dataset was divided in a **stratified manner** to maintain class balance:
 
 ---
 
-# 🚀 Project Workflow
+## 🚀 Project Workflow
 
 ### 1️⃣ Data Preprocessing (`data_preparation.py`)
 - Load images and labels from **Hugging Face Dataset**.
@@ -46,14 +46,12 @@ The dataset was divided in a **stratified manner** to maintain class balance:
 
 ---
 
-
 ## 🛠 Setup & Installation
-
+```md
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/your-username/fashion-image-retrieval.git
 cd fashion-image-retrieval
-
 
 ### 2️⃣ Install Dependencies
 ```bash
@@ -74,6 +72,7 @@ python test.py
 ### 6️⃣ Run the Interactive Gradio UI
 ```bash
 python app.py
+
 
 ---
 ## 📊 **Model Performance Comparison**
