@@ -1,6 +1,11 @@
 # 🔍 Image Similarity Search using Deep Learning
 
 This project implements a **content-based image retrieval (CBIR) system** using deep learning models to find visually similar images. The system extracts feature embeddings from pre-trained models and performs **FAISS-based similarity search**.
+## 🚀 Try the Live Demo  
+
+Click below to try the interactive **Image Similarity Search** system:  
+
+[![Hugging Face Space](https://img.shields.io/badge/🤗-Hugging%20Face%20Demo-blue?style=for-the-badge)](https://huggingface.co/spaces/rathormanoj08/image_similarity)
 
 ---
 ## 🔍 Similarity Search Results
